@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Hello World</title>
+	<meta charset="utf-8" />
+
+	<!-- style sheets -->
+	<link rel="stylesheet" href="css/style.css">
+
+    <!-- leaflet -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+
+</head>
+<body>
+
+	<div class="header">
+		Map of UCLA
+	</div>
+	<div class="sidebar">
+		This is a map of UCLA showing the pretty spots on campus!
+	</div>
+	<div class="content">
+		<div id="map"></div>
+	</div>
+
+    <script>
+        var map = L.map('map').setView([34.0730,-118.4431], 17);
+
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
+
+        var fowler_marker = L.marker([34.0730,-118.4431]).addTo(map)
+                .bindPopup('Fowler Museum<br> Pretty Amphitheatre at UCLA')
+                .openPopup();
+                
+        var janss_marker = L.marker([34.072299525032534,-118.44318946006187]).addTo(map)
+                .bindPopup('Janss Steps<br> Best Sunset View at UCLA')
+                .openPopup();
+
+        var royce_marker = L.marker([34.0728,-118.4422]).addTo(map)
+                .bindPopup('Royce<br> Best Golden Hour Picture Spot')
+                .openPopup();
+    </script>
+
+</body>
+</html>
