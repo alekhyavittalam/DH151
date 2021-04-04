@@ -21,6 +21,8 @@ body {
 	grid-area: header;
 	padding:10px;
     background-color: #032e42;
+    text-align: center;
+    color: #FFFFFF;
 }
 .sidebar {
 	grid-area: sidebar;
@@ -29,4 +31,28 @@ body {
 }
 .content {
 	grid-area: content;
+}
+
+.title{
+    grid-area: header;
+	padding:3px;
+    background-color: #032e42;
+    text-align: center;
+    color: #FFFFFF;
+}
+
+.para{
+    grid-area: content;
+}
+
+.image{
+    position: relative;
+    bottom: -15px;
+    right: -20px;
+}
+
+.list{
+    position: relative;
+    top: -350px;
+    left: 225px;
 }
