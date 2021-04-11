@@ -18,7 +18,7 @@
 		Places I Visited
 	</div>
 	<div class="sidebar">
-		A map showing my favorite places I visited!<br> Click on each point!
+		A map showing my favorite places I have visited over the past few years!<br> Click on each point to learn more!
 	</div>
 	<div class="content">
 		<div id="map"></div>
@@ -30,30 +30,35 @@
                 'title': 'Santorini',
                 'lat': 36.3932,
                 'lon': 25.4615,
+                'image': '<img src="santorini.jpeg" class="image" width = "200" height = "175">',
                 'description': 'Visited this gorgeous place in 2017 and want to go back!'
             },
             {
                 'title': 'Paris',
                 'lat': 48.8566,
                 'lon': 2.3522,
+                'image': '<img src="paris.jpeg" class="image" width = "200" height = "175">',
                 'description': 'Love the way the Eiffel Tower lights up at night!'
             },
             {
                 'title': 'Colombo',
                 'lat': 6.9271,
                 'lon': 79.8612,
+                'image': '<img src="colombo.jpeg" class="image" width = "200" height = "175">',
                 'description': "Went for a short three day holiday during New Year's"
             },
             {
                 'title': 'London',
                 'lat': 51.5074,
                 'lon': -0.1278,
+                'image': '<img src="london.jpeg" class="image" width = "200" height = "175">',
                 'description': 'Been to this place multiple times and still love it!'
             },
             {
                 'title': 'Malé',
                 'lat': 4.1755,
                 'lon': 73.5093,
+                'image': '<img src="maldives.jpeg" class="image" width = "200" height = "175">',
                 'description': 'Cannot get over the beautiful coast and island. Wish I could live here!'
 
             },
@@ -61,12 +66,14 @@
                 'title': 'Singapore',
                 'lat': 1.3521,
                 'lon': 103.8198,
+                'image': '<img src="singapore.jpeg" class="image" width = "200" height = "175">',
                 'description': 'Such a pretty city with so much greenery!'
             },
             {
                 'title': 'Turkey',
                 'lat': 39.9334,
                 'lon': 32.8597,
+                'image': '<img src="turkey.jpeg" class="image" width = "200" height = "175">',
                 'description': 'Loved the food and the scenic hot air balloon ride!'
             }
         ]
@@ -79,7 +86,7 @@
 
         cities.forEach(function(item){
             L.marker([item.lat, item.lon]).addTo(map)
-                .bindPopup(item.title + '<br>' + item.description)
+                .bindPopup(item.title + '<br>' + item.description + '<br>' + item.image)
                 .openPopup();
         });
 
