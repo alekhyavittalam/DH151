@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head> 
+	<title>Hello World</title>
+	<meta charset="utf-8" />
+
+	<!-- style sheets -->
+	<link rel="stylesheet" href="css/style.css">
+
+    <!-- leaflet -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+
+</head>
+<body>
+
+	<div class="header">
+		Places I Visited
+	</div>
+	<div class="sidebar">
+		A map showing my favorite places I visited!<br> Click on each point!
+	</div>
+	<div class="content">
+		<div id="map"></div>
+	</div>
+
+    <script>
+        let cities = [
+            {
+                'title': 'Santorini',
+                'lat': 36.3932,
+                'lon': 25.4615,
+                'description': 'Visited this gorgeous place in 2017 and want to go back!'
+            },
+            {
+                'title': 'Paris',
+                'lat': 48.8566,
+                'lon': 2.3522,
+                'description': 'Love the way the Eiffel Tower lights up at night!'
+            },
+            {
+                'title': 'Colombo',
+                'lat': 6.9271,
+                'lon': 79.8612,
+                'description': "Went for a short three day holiday during New Year's"
+            },
+            {
+                'title': 'London',
+                'lat': 51.5074,
+                'lon': -0.1278,
+                'description': 'Been to this place multiple times and still love it!'
+            },
+            {
+                'title': 'Malé',
+                'lat': 4.1755,
+                'lon': 73.5093,
+                'description': 'Cannot get over the beautiful coast and island. Wish I could live here!'
+
+            },
+            {
+                'title': 'Singapore',
+                'lat': 1.3521,
+                'lon': 103.8198,
+                'description': 'Such a pretty city with so much greenery!'
+            },
+            {
+                'title': 'Turkey',
+                'lat': 39.9334,
+                'lon': 32.8597,
+                'description': 'Loved the food and the scenic hot air balloon ride!'
+            }
+        ]
+
+        var map = L.map('map').setView([34.0730,73.5093], 3);
+
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
+
+        cities.forEach(function(item){
+            L.marker([item.lat, item.lon]).addTo(map)
+                .bindPopup(item.title + '<br>' + item.description)
+                .openPopup();
+        });
+
+    </script>
+
+</body>
+</html>
