@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "leaflet-drift-marker": "^2.0.0"
+  }
+}
