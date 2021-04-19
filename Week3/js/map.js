@@ -107,6 +107,8 @@ let cities = [
 
 var map = L.map('map').setView([34.0730,73.5093], 3);
 
+
+
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
 }).addTo(map);
@@ -114,6 +116,9 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 
 // create a feature group
 let myMarkers = L.featureGroup();
+
+
+
 
 // loop through data
 cities.forEach(function(item, index){
@@ -142,49 +147,4 @@ function flyToIndex(index){
     myMarkers.getLayers()[index].openPopup()
 }
 
-//Animated marker
-/*
-// Creating a tile layer usually involves setting the URL template for the tile images
-var osmUrl = 'http://{s}.tile.osm.org/{z}/{x}/{y}.png',
-    osmAttrib = '&copy; <a href="http://openstreetmap.org/copyright">OpenStreetMap</a> contributors',
-	osm = L.tileLayer(osmUrl, {
-	 	    maxZoom: 18,
-	 	    attribution: osmAttrib
-	});
 
-// initialize the map on the "map" div with a given center and zoom
-//var map1 = L.map1('map').setView([19.04469, 72.9258], 3).addLayer(osm);
-map.addLayer(osm);
-
-var plane_marker = new DriftMarker([10,10], {
-        iconUrl: "pictures/plane.png", 
-        draggable: true,
-         title: "Resource location",
-         alt: "Resource Location",
-         riseOnHover: true
-     }).addTo(map)
-
- // Script for adding marker on map click
- function onMapClick(e) {
- plane_marker.slideTo(	e.latlng, {
-        duration: 2000
-      });
- }
- map.on('click', onMapClick);
-plane_marker.slideTo(	[20, 20], {
-duration: 2000
-});
-
-
-import DriftMarker from "leaflet-drift-marker";
-var DriftMarker=require("leaflet-drift-marker")
-
-const plane_marker = new DriftMarker([10, 10]);
-
-plane_marker.slideTo([20, 20], {
-  duration: 2000,
-  keepAtCenter: true,
-});
-
-//plane_marker.addTo(map)
-*/
