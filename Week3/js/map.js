@@ -156,6 +156,7 @@ function flyToIndex(index){
     myMarkers.getLayers()[index].openPopup()
 }
 
+/*
 var marker = new Drift_Marker([19.04469, 72.9258], {
     draggable: true,
     title: "Resource location",
@@ -174,3 +175,4 @@ map.on('click', onMapClick);
 marker.slideTo(	[20, 20], {
 duration: 2000
 });
+*/

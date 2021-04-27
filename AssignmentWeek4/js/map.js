@@ -3,8 +3,7 @@ let map;
 let lat = 0;
 let lon = 0;
 let zl = 3;
-//let path = "http://0.0.0.0:8000/";
-let path = "whc-sites-2019.csv"
+let path = "data/whc-sites-2019.csv"
 let markers = L.featureGroup();
 
 // initialize
@@ -40,17 +39,34 @@ function readCSV(path){
 
 function mapCSV(data){
 
+    let circleOptions = {
+        radius: 5,
+        weight: 1,
+        color: 'white',
+        fillColor: 'dodgerblue',
+        fillOpacity: 1
+    }
     //loop through each entry
     data.data.forEach(function(item,index){
-        let marker = L.marker([item.latitude,item.longitude])
+        let marker = L.circleMarker([item.latitude,item.longitude], circleOptions).on('mouseover',function(){
+            this.bindPopup(`<b>Name: </b>${item.name_en}<br><b>Description: </b>${item.short_description_en}`).openPopup()
+        })
 
         markers.addLayer(marker)
+		$('.sidebar').append(`<div class="sidebar-item" onclick="flyToIndex(${index})">${item.name_en}</div`)
+
+		
 
     })
 
     markers.addTo(map);
 
     map.fitBounds(markers.getBounds());
+}
+
+function flyToIndex(index){
+    map.flyTo([data.data[index].latitude,data.data[index].longitude],12)
+    markers.getLayers()[index].openPopup()
 }
 
 /*
