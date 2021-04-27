@@ -130,15 +130,24 @@ cities.forEach(function(item, index){
     $('.sidebar').append(`<div class="sidebar-item" onclick="flyToIndex(${index})">${item.title}</div`)
 });
 
+
+
+
 myMarkers.addTo(map)
+
+
 
 // define layers
 let layers = {
     "Cities": myMarkers
 }
 
+
+
 // add layer control box
 L.control.layers(null,layers).addTo(map)
+
+
 
 map.fitBounds(myMarkers.getBounds())
 
@@ -147,4 +156,21 @@ function flyToIndex(index){
     myMarkers.getLayers()[index].openPopup()
 }
 
+var marker = new Drift_Marker([19.04469, 72.9258], {
+    draggable: true,
+    title: "Resource location",
+    alt: "Resource Location",
+    riseOnHover: true
+}).addTo(map)
+    .bindPopup("test").openPopup();
 
+// Script for adding marker on map click
+function onMapClick(e) {
+marker.slideTo(	e.latlng, {
+   duration: 2000
+ });
+}
+map.on('click', onMapClick);
+marker.slideTo(	[20, 20], {
+duration: 2000
+});
