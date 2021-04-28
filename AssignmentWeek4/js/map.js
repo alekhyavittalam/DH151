@@ -36,6 +36,34 @@ function readCSV(path){
 	});
 }
 
+/*
+//Layer Groups
+var Cultural = new L.LayerGroup();
+var Natural = new L.LayerGroup();
+var Mixed = new L.LayerGroup();
+
+//Markers
+function layer(marker){
+	if(marker.category == "Cultural"){
+		Cultural.addLayer(marker);
+	}
+	if(marker.category == "Natural"){
+		Natural.addLayer(marker);
+	}
+	else{
+		Mixed.addLayer(marker);
+	}
+}
+
+let layers = {
+	"Cultural": Cultural,
+	"Natural": Natural,
+	"Mixed": Mixed
+}
+
+// add layer control box
+L.control.layers(null,layers).addTo(map)
+*/
 
 function mapCSV(data){
 
