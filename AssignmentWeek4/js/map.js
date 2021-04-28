@@ -8,13 +8,13 @@ let markers = L.featureGroup();
 //let Culturalmarkers = L.featureGroup();
 //let Naturalmarkers = L.featureGroup();
 //let Mixedmarkers = L.featureGroup();
-​
+
 // initialize
 $( document ).ready(function() {
     createMap(lat,lon,zl);
     readCSV(path);
 });
-​
+
 // create the map
 function createMap(lat,lon,zl){
 	map = L.map('map').setView([lat,lon], zl);
@@ -23,7 +23,7 @@ function createMap(lat,lon,zl){
 		attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
 	}).addTo(map);
 }
-​
+
 // function to read csv data
 function readCSV(path){
 	Papa.parse(path, {
@@ -64,7 +64,7 @@ function mapCSV(data){
 		$('.sidebar').append(`<div class="sidebar-item" onclick="flyToIndex(${index})">${item.name_en}</div`)
 ​
 		
-​
+
     })
 ​
 	markers.addTo(map);
