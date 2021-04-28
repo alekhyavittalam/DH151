@@ -5,6 +5,9 @@ let lon = 0;
 let zl = 3;
 let path = "data/whc-sites-2019.csv"
 let markers = L.featureGroup();
+//let Culturalmarkers = L.featureGroup();
+//let Naturalmarkers = L.featureGroup();
+//let Mixedmarkers = L.featureGroup();
 
 // initialize
 $( document ).ready(function() {
@@ -36,7 +39,43 @@ function readCSV(path){
 	});
 }
 
-/*
+function mapCSV(data){
+
+    let circleOptions = {
+        radius: 5,
+        weight: 1,
+        color: 'white',
+        fillColor: 'dodgerblue',
+        fillOpacity: 1
+    }
+    //loop through each entry
+    data.data.forEach(function(item,index){
+        let marker = L.circleMarker([item.latitude,item.longitude], circleOptions).on('mouseover',function(){
+            this.bindPopup(`<b>Name: </b>${item.name_en}<br><b>Description: </b>${item.short_description_en}`).openPopup()
+        })
+
+		//Sidebar is not clicking to show the marker
+        markers.addLayer(marker)
+		
+		$('.sidebar').append(`<div class="sidebar-item" onclick="flyToIndex(${index})">${item.name_en}</div`)
+
+		
+
+    })
+
+	markers.addTo(map);
+
+    map.fitBounds(markers.getBounds());
+}
+
+	function flyToIndex(index){
+		map.flyTo([item.latitude,item.longitude],12)
+		markers.getLayers()[index].openPopup()
+	}
+
+	
+/*	Tried adding different layers but wasn't working
+
 //Layer Groups
 var Cultural = new L.LayerGroup();
 var Natural = new L.LayerGroup();
@@ -63,45 +102,64 @@ let layers = {
 
 // add layer control box
 L.control.layers(null,layers).addTo(map)
-*/
 
-function mapCSV(data){
 
-    let circleOptions = {
-        radius: 5,
-        weight: 1,
-        color: 'white',
-        fillColor: 'dodgerblue',
-        fillOpacity: 1
-    }
-    //loop through each entry
-    data.data.forEach(function(item,index){
-        let marker = L.circleMarker([item.latitude,item.longitude], circleOptions).on('mouseover',function(){
-            this.bindPopup(`<b>Name: </b>${item.name_en}<br><b>Description: </b>${item.short_description_en}`).openPopup()
-        })
 
-        markers.addLayer(marker)
-		$('.sidebar').append(`<div class="sidebar-item" onclick="flyToIndex(${index})">${item.name_en}</div`)
+	
 
-		
+	function mapCSV(data){
 
-    })
+		let circleOptions = {
+			radius: 5,
+			weight: 1,
+			color: 'white',
+			fillColor: 'dodgerblue',
+			fillOpacity: 1
+		}
+		//loop through each entry
+		data.data.forEach(function(item,index){
+			if(item.category == "Cultural"){
+				let Culturalmarker = L.circleMarker([item.latitude,item.longitude], circleOptions).on('mouseover',function(){
+					this.bindPopup(`<b>Name: </b>${item.name_en}<br><b>Description: </b>${item.short_description_en}`).openPopup()
+				})
+				Culturalmarkers.addLayer(Culturalmarker)
 
-    markers.addTo(map);
+			}
 
-    map.fitBounds(markers.getBounds());
-}
+			if(item.category == "Natural"){
+				letNaturalmarker = L.circleMarker([item.latitude,item.longitude], circleOptions).on('mouseover',function(){
+					this.bindPopup(`<b>Name: </b>${item.name_en}<br><b>Description: </b>${item.short_description_en}`).openPopup()
+				})
+				Naturalmarkers.addLayer(Naturalmarker)
+			}
 
-function flyToIndex(index){
-    map.flyTo([data.data[index].latitude,data.data[index].longitude],12)
-    markers.getLayers()[index].openPopup()
-}
+			else{
+				letMixedmarker = L.circleMarker([item.latitude,item.longitude], circleOptions).on('mouseover',function(){
+					this.bindPopup(`<b>Name: </b>${item.name_en}<br><b>Description: </b>${item.short_description_en}`).openPopup()
+				})
+				Mixedmarkers.addLayer(Mixedmarker)
+			}
+			
+			
+			$('.sidebar').append(`<div class="sidebar-item" onclick="flyToIndex(${index})">${item.name_en}</div`)
+	
+			//add featuregroup to map
+			Culturalmarkers.addTo(map)
+			Naturalmarkers.addTo(map)
+			Mixedmarkers.addTo(map)
+	
+		})
 
-/*
-function panToImage(index){
-	// zoom to level 17 first
-	map.setZoom(17);
-	// pan to the marker
-	map.panTo(markers.getLayers()[index]._latlng);
+		let addedLayers = {
+			"Cultural": Culturalmarkers,
+			"Natural": Naturalmarkers,
+			"Mixed": Mixedmarkers,
+		}
+
+		L.control.layers(null,addedLayers).addTo(map);
+
+    //markers.addTo(map);
+
+    map.fitBounds(Culturalmarkers.getBounds());
 }
 */
