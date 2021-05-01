@@ -18,6 +18,16 @@ body {
 	"footer footer";
 }
 
+.body1{
+	display: grid;
+	grid-area: content;
+	grid-template-areas:
+	"header header"
+	"content content"
+	"footer footer";
+}
+
+
 .container{
 	width: 80%;
 	margin: 0 auto;

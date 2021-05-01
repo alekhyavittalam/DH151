@@ -4,7 +4,9 @@ let lat = 0;
 let lon = 0;
 let zl = 3;
 let path = "data/DataMerge_2017.csv";
-let markers = L.featureGroup();
+//let markers = L.featureGroup();
+let highpollution_markers = L.featureGroup();
+let lowpollution_markers = L.featureGroup();
 
 // initialize
 $( document ).ready(function() {
@@ -39,20 +41,21 @@ function readCSV(path){
 
 function mapCSV(data){
 
-    let circleOptions = {
-        radius: 5,
+    let circleOptionsHigh = {
+        radius: 15,
         weight: 1,
         color: 'white',
-        fillColor: 'dodgerblue',
+        fillColor: null,
         fillOpacity: 1,
-        //radius: item.Outdoor_Air_Pollution
+        //radius: item['Outdoor.air.pollution..IHME..2019.']*100
     }
+
+    /*
     //loop through each entry
     data.data.forEach(function(item,index){
         let marker = L.circleMarker([item.latitude,item.longitude], circleOptions).on('mouseover',function(){
-            this.bindPopup(`${item.country}<br> Percentage of Deaths due to Pollution: ${item.Outdoor_Air_Pollution}`).openPopup()
+            this.bindPopup(`${item.country}<br> Percentage of Deaths due to Pollution: ${item['Outdoor.air.pollution..IHME..2019.']}`).openPopup()
         })
-//Percentage for Outdoor Air Pollution is not working?????????????
 
         markers.addLayer(marker)
 
@@ -63,6 +66,45 @@ function mapCSV(data){
     markers.addTo(map);
 
     map.fitBounds(markers.getBounds());
+}
+*/ 
+
+data.data.forEach(function(item,index){
+    if(item['Outdoor.air.pollution..IHME..2019.'] > 6.00){
+        circleOptions.radius = item['Outdoor.air.pollution..IHME..2019.'] * 100
+        circleOptions.fillColor = 'red'
+        let highpollution_marker = L.circleMarker([item.latitude,item.longitude], circleOptions).bindPopup(`${item.country}<br> Percentage of Deaths due to Pollution: ${item['Outdoor.air.pollution..IHME..2019.']}`).on('mouseover',function(){
+            this.openPopup()
+    })
+
+    highpollution_markers.addLayer(highpollution_markers)
+
+    //add entry to sidebar
+    //$('.sidebar').append(`<img src="${item.thumbnail_url}" onmouseover="panToImage(${index})">`)
+}
+
+else{
+    circleOptions.radius = item['Outdoor.air.pollution..IHME..2019.'] * 100
+    circleOptions.fillColor = 'green'
+    let lowpollution_marker = L.circleMarker([item.latitude,item.longitude], circleOptions).bindPopup(`${item.country}<br> Percentage of Deaths due to Pollution: ${item['Outdoor.air.pollution..IHME..2019.']}`).on('mouseover',function(){
+        this.openPopup()
+})
+
+lowpollution_markers.addLayer(lowpollution_markers)
+
+}
+
+highpollution_markers.addTo(map);
+lowpollution_markers.addTo(map);
+
+})
+
+let addLayers = {
+    "High Pollution": highpollution_markers,
+    "Low Pollution": lowpollution_markers,
+}
+
+map.fitBounds(highpollution_markers.getBounds());
 }
 
 
