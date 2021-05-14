@@ -1,0 +1,5 @@
+<h3>What are your thoughts on "thick mapping in the digital humanities," and how does it differ from "mapping?"</h3>
+Thick Mapping is detailed mapping. It is telling a story through maps and visualizations. Mapping can be referred to simple locating points on a map. Thick mapping however, is incorporating the humanities aspect. It gives you detailed information about a topic or a person. It can be used to tell your own story and allow users to journey through your life across the map.
+
+<h3>How does the theory of "thick mapping" inform narratives that are influencing your life?</h3>
+I think Thick mapping will allow us to tell any kind of story we are passionate about. As someone who cares about the environment, I would love to use thick mapping to show how our world is being deteriorated by our ways of living. Global Warming is a huge topic right now and thick mapping can help people visualize and understand the extent to which global warming is affecting our planet. Introducing statistics and showing the reasons for climate change through thick mapping would be an effective way to help people understand the intensity of the situation.
